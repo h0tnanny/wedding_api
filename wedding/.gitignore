@@ -225,6 +225,5 @@ __pycache__/
  
 # Windows thumbnail cache files
 Thumbs.db
-.DS_Store
 
 .idea

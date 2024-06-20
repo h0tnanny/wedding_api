@@ -1,0 +1,27 @@
+﻿version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_wedding
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ((postgres))
+      POSTGRES_DB: wedding
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  wedding.api:
+    image: wedding.api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    ports:
+      - "8082:8080"  # Используем порт 8082 на хосте и мапим на порт 8080 внутри контейнера
+
+volumes:
+  postgres_data:
