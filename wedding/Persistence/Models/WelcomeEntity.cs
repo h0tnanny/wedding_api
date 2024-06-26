@@ -9,4 +9,5 @@ public sealed class WelcomeEntity
     public required string Key { get; set; }
     public required string Title { get; set; }
     public string? Text { get; set; } = string.Empty;
+    public int VisitingCount { get; set; }
 }

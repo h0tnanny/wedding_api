@@ -23,6 +23,10 @@ public sealed class WelcomeController(ILogger<WelcomeController> logger,
         var welcome = await GetByKey(key, cancellationToken);
 
         if (welcome is null) return NoContent();
+
+        welcome.VisitingCount += 1;
+        _dbContext.WelcomeEntities.Update(welcome);
+        await _dbContext.SaveChangesAsync(cancellationToken);
         
         return Ok(welcome);
     }
